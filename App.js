@@ -22,8 +22,20 @@ const Input = styled.TextInput`
   padding: 10px;
 `;
 
+const CalcButton = styled.Button`
+  margin-top: 20px;
+`;
+
 export default () => {
   const [bill, setBill] = useState("");
+
+  const calc = () => {
+    let nBill = parseFloat(bill);
+    if (nBill) {
+    } else {
+      alert("Digite o valor da compra!");
+    }
+  };
 
   return (
     <Container>
@@ -35,6 +47,8 @@ export default () => {
         value={bill}
         onChangeText={(n) => setBill(n)}
       />
+
+      <CalcButton title="Calcular" onPress={calc} />
     </Container>
   );
 };
