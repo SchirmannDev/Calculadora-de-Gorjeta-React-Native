@@ -34,6 +34,15 @@ const ResultArea = styled.View`
   align-items: center;
 `;
 
+const ResultItemTitle = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+`;
+
+const ResultItem = styled.Text`
+  font-size: 18px;
+`;
+
 export default () => {
   const [bill, setBill] = useState("");
   const [tip, setTip] = useState(0);
@@ -64,10 +73,10 @@ export default () => {
         <ResultItem>R${bill}</ResultItem>
 
         <ResultItemTitle>Valor da Gorjeta:</ResultItemTitle>
-        <ResultItem>R${bill}</ResultItem>
+        <ResultItem>R${tip}</ResultItem>
 
         <ResultItemTitle>Valor Total:</ResultItemTitle>
-        <ResultItem>R${bill}</ResultItem>
+        <ResultItem>R${bill + tip}</ResultItem>
       </ResultArea>
     </Container>
   );
