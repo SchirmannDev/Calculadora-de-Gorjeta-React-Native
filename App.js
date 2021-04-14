@@ -19,13 +19,18 @@ const Input = styled.TextInput`
   background-color: #eee;
   margin-top: 20px;
   border-radius: 10px;
+  padding: 10px;
 `;
 
 export default () => {
   return (
     <Container>
       <HeaderText>Calculador de Gorjeta</HeaderText>
-      <Input />
+      <Input
+        placeholder="Qual o valor da sua conta?"
+        placeholderTextColor="#f568"
+        keyboardType="numeric"
+      />
     </Container>
   );
 };
