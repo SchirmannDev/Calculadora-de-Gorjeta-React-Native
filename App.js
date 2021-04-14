@@ -41,6 +41,7 @@ const ResultItemTitle = styled.Text`
 
 const ResultItem = styled.Text`
   font-size: 18px;
+  margin-top: 30px;
 `;
 
 export default () => {
@@ -68,16 +69,18 @@ export default () => {
       />
 
       <CalcButton title="Calcular" onPress={calc} />
-      <ResultArea>
-        <ResultItemTitle>Valor da conta:</ResultItemTitle>
-        <ResultItem>R${bill}</ResultItem>
+      {tip > 0 && (
+        <ResultArea>
+          <ResultItemTitle>Valor da conta:</ResultItemTitle>
+          <ResultItem>R${parseFloat(bill).toFixed(2)}</ResultItem>
 
-        <ResultItemTitle>Valor da Gorjeta:</ResultItemTitle>
-        <ResultItem>R${tip}</ResultItem>
+          <ResultItemTitle>Valor da Gorjeta:</ResultItemTitle>
+          <ResultItem>R${tip.toFixed(2)}</ResultItem>
 
-        <ResultItemTitle>Valor Total:</ResultItemTitle>
-        <ResultItem>R${bill + tip}</ResultItem>
-      </ResultArea>
+          <ResultItemTitle>Valor Total:</ResultItemTitle>
+          <ResultItem>R${(parseFloat(bill) + tip).toFixed(2)}</ResultItem>
+        </ResultArea>
+      )}
     </Container>
   );
 };
