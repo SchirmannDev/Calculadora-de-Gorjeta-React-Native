@@ -44,9 +44,24 @@ const ResultItem = styled.Text`
   margin-top: 30px;
 `;
 
+const PctArea = styled.View`
+  flex-direction: row;
+  margin: 20px;
+`;
+
+const PctItem = styled.TouchableOpacity`
+  margin: 10px;
+  padding: 20px;
+  background-color: #01e9ff;
+  border-radius: 25px;
+`;
+
+const PctItemText = styled.Text``;
+
 export default () => {
   const [bill, setBill] = useState("");
   const [tip, setTip] = useState(0);
+  const [pct, setPct] = useState("10");
 
   const calc = () => {
     let nBill = parseFloat(bill);
@@ -62,11 +77,25 @@ export default () => {
       <HeaderText>Calculador de Gorjeta</HeaderText>
       <Input
         placeholder="Qual o valor da sua conta?"
-        placeholderTextColor="#f568"
+        placeholderTextColor="#68c2ff"
         keyboardType="numeric"
         value={bill}
         onChangeText={(n) => setBill(n)}
       />
+      <PctArea>
+        <PctItem>
+          <PctItemText onPress={() => setPct(5)}>5%</PctItemText>
+        </PctItem>
+        <PctItem>
+          <PctItemText>10%</PctItemText>
+        </PctItem>
+        <PctItem>
+          <PctItemText>15%</PctItemText>
+        </PctItem>
+        <PctItem>
+          <PctItemText>20%</PctItemText>
+        </PctItem>
+      </PctArea>
 
       <CalcButton title="Calcular" onPress={calc} />
       {tip > 0 && (
@@ -75,7 +104,7 @@ export default () => {
           <ResultItem>R${parseFloat(bill).toFixed(2)}</ResultItem>
 
           <ResultItemTitle>Valor da Gorjeta:</ResultItemTitle>
-          <ResultItem>R${tip.toFixed(2)}</ResultItem>
+          <ResultItem>R${tip.toFixed(2)}(10%)</ResultItem>
 
           <ResultItemTitle>Valor Total:</ResultItemTitle>
           <ResultItem>R${(parseFloat(bill) + tip).toFixed(2)}</ResultItem>
