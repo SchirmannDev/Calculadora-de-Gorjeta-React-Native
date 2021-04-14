@@ -23,6 +23,8 @@ const Input = styled.TextInput`
 `;
 
 export default () => {
+  const [bill, setBill] = useState("");
+
   return (
     <Container>
       <HeaderText>Calculador de Gorjeta</HeaderText>
@@ -30,6 +32,8 @@ export default () => {
         placeholder="Qual o valor da sua conta?"
         placeholderTextColor="#f568"
         keyboardType="numeric"
+        value={bill}
+        onChangeText={(n) => setBill(n)}
       />
     </Container>
   );
