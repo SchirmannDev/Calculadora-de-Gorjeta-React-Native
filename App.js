@@ -26,12 +26,22 @@ const CalcButton = styled.Button`
   margin-top: 20px;
 `;
 
+const ResultArea = styled.View`
+  margin-top: 30px;
+  background-color: #eee;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default () => {
   const [bill, setBill] = useState("");
+  const [tip, setTip] = useState(0);
 
   const calc = () => {
     let nBill = parseFloat(bill);
     if (nBill) {
+      setTip(nBill * 0.1);
     } else {
       alert("Digite o valor da compra!");
     }
@@ -49,6 +59,16 @@ export default () => {
       />
 
       <CalcButton title="Calcular" onPress={calc} />
+      <ResultArea>
+        <ResultItemTitle>Valor da conta:</ResultItemTitle>
+        <ResultItem>R${bill}</ResultItem>
+
+        <ResultItemTitle>Valor da Gorjeta:</ResultItemTitle>
+        <ResultItem>R${bill}</ResultItem>
+
+        <ResultItemTitle>Valor Total:</ResultItemTitle>
+        <ResultItem>R${bill}</ResultItem>
+      </ResultArea>
     </Container>
   );
 };
