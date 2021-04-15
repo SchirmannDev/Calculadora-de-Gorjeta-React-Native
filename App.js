@@ -6,10 +6,12 @@ const Container = styled.SafeAreaView`
   flex: 1;
   align-items: center;
   margin-top: 30px;
+  background-color: #000;
 `;
 
 const HeaderText = styled.Text`
   font-size: 25px;
+  color: #eee;
 `;
 
 const Input = styled.TextInput`
@@ -22,8 +24,18 @@ const Input = styled.TextInput`
   padding: 10px;
 `;
 
-const CalcButton = styled.Button`
+const CalcButton = styled.TouchableOpacity`
   margin-top: 20px;
+`;
+
+const CalcButtonText = styled.Text`
+  margin: 10px;
+  padding: 40px;
+  background-color: #01e9ff;
+  border-radius: 25px;
+  color: #eee;
+  font-size: 20px;
+  font-weight: bold;
 `;
 
 const ResultArea = styled.View`
@@ -56,7 +68,11 @@ const PctItem = styled.TouchableOpacity`
   border-radius: 25px;
 `;
 
-const PctItemText = styled.Text``;
+const PctItemText = styled.Text`
+  color: #f7f7f7;
+  font-size: 20px;
+  font-weight: bold;
+`;
 
 export default () => {
   const [bill, setBill] = useState("");
@@ -65,8 +81,9 @@ export default () => {
 
   const calc = () => {
     let nBill = parseFloat(bill);
+
     if (nBill) {
-      setTip(nBill * 0.1);
+      setTip((pct / 100) * nBill);
     } else {
       alert("Digite o valor da compra!");
     }
@@ -87,24 +104,28 @@ export default () => {
           <PctItemText onPress={() => setPct(5)}>5%</PctItemText>
         </PctItem>
         <PctItem>
-          <PctItemText>10%</PctItemText>
+          <PctItemText onPress={() => setPct(10)}>10%</PctItemText>
         </PctItem>
         <PctItem>
-          <PctItemText>15%</PctItemText>
+          <PctItemText onPress={() => setPct(15)}>15%</PctItemText>
         </PctItem>
         <PctItem>
-          <PctItemText>20%</PctItemText>
+          <PctItemText onPress={() => setPct(20)}>20%</PctItemText>
         </PctItem>
       </PctArea>
 
-      <CalcButton title="Calcular" onPress={calc} />
+      <CalcButton title={`Calcular ${pct}%`} onPress={calc}>
+        <CalcButtonText>Calcular</CalcButtonText>
+      </CalcButton>
       {tip > 0 && (
         <ResultArea>
           <ResultItemTitle>Valor da conta:</ResultItemTitle>
           <ResultItem>R${parseFloat(bill).toFixed(2)}</ResultItem>
 
           <ResultItemTitle>Valor da Gorjeta:</ResultItemTitle>
-          <ResultItem>R${tip.toFixed(2)}(10%)</ResultItem>
+          <ResultItem>
+            R${tip.toFixed(2)} ({pct})%
+          </ResultItem>
 
           <ResultItemTitle>Valor Total:</ResultItemTitle>
           <ResultItem>R${(parseFloat(bill) + tip).toFixed(2)}</ResultItem>
